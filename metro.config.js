@@ -1,25 +1,18 @@
 const { getDefaultConfig } = require("expo/metro-config");
-const { getSentryExpoConfig } = require("@sentry/react-native/metro");
 
 module.exports = (() => {
-  const configExpo = getDefaultConfig(__dirname);
-  const configSentry = getSentryExpoConfig(__dirname);
+  const config = getDefaultConfig(__dirname);
 
-  const { transformer, resolver } = configExpo;
+  const { transformer, resolver } = config;
 
-  configExpo.transformer = {
+  config.transformer = {
     ...transformer,
     babelTransformerPath: require.resolve("react-native-svg-transformer/expo")
   };
-  configExpo.resolver = {
+  config.resolver = {
     ...resolver,
     assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
     sourceExts: [...resolver.sourceExts, "svg"]
-  };
-
-  const config = {
-    ...configExpo,
-    ...configSentry
   };
 
   return config;
