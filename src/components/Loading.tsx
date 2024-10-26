@@ -1,4 +1,4 @@
-import { Center, Spinner } from '@gluestack-ui/themed';
+import { Center, Spinner } from "@gluestack-ui/themed"
 
 const Loading: React.FC = () => {
   return (
@@ -8,4 +8,4 @@ const Loading: React.FC = () => {
   )
 }
 
-export default Loading;
+export default Loading
