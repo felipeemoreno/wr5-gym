@@ -1,4 +1,4 @@
-import { VStack, Center, Image } from '@gluestack-ui/themed';
+import { VStack, Center, Image, Text } from '@gluestack-ui/themed';
 
 import BackgroundImg from '@assets/background.png';
 import Logo from '@assets/logo.svg';
@@ -17,6 +17,10 @@ const SignIn: React.FC = () => {
 
       <Center my="$24">
         <Logo />
+
+        <Text color="$gray100" fontSize="$sm">
+          Treine sua mente e o seu corpo.
+        </Text>
       </Center>
 
     </VStack>
