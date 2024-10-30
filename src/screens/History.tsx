@@ -1,7 +1,9 @@
-import { Text } from "@gluestack-ui/themed"
+import { Center, Text } from "@gluestack-ui/themed"
 
-const History: React.FC = () => {
-  return <Text>History</Text>
+export const History: React.FC = () => {
+  return (
+    <Center flex={1}>
+      <Text color="$white">History</Text>
+    </Center>
+  )
 }
-
-export default History

@@ -1,5 +1,6 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native"
 
+import AppRoutes from "./app.routes"
 import AuthRoutes from "./auth.routes"
 
 import { gluestackUIConfig } from "../../config/gluestack-ui.config"
@@ -13,7 +14,7 @@ const Routes: React.FC = () => {
   return (
     <Box flex={1} bg="$gray700">
       <NavigationContainer theme={theme}>
-        <AuthRoutes />
+        <AppRoutes />
       </NavigationContainer>
     </Box>
   )

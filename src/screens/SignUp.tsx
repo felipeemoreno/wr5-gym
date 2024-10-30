@@ -14,7 +14,7 @@ import Button from "@components/Button"
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes"
 import { useNavigation } from "@react-navigation/native"
 
-const SignUp: React.FC = () => {
+export const SignUp: React.FC = () => {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
   const handleGoBack = () => {
@@ -70,5 +70,3 @@ const SignUp: React.FC = () => {
     </ScrollView>
   )
 }
-
-export default SignUp

@@ -1,7 +1,9 @@
-import { Text } from "@gluestack-ui/themed"
+import { Center, Text } from "@gluestack-ui/themed"
 
-const Profile: React.FC = () => {
-  return <Text>Profile</Text>
+export const Profile: React.FC = () => {
+  return (
+    <Center flex={1}>
+      <Text color="$white">Profile</Text>
+    </Center>
+  )
 }
-
-export default Profile

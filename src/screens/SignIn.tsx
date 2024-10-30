@@ -16,7 +16,7 @@ import Logo from "@assets/logo.svg"
 import Input from "@components/Input"
 import Button from "@components/Button"
 
-const SignIn: React.FC = () => {
+export const SignIn: React.FC = () => {
   const navigation = useNavigation<AuthNavigatorRoutesProps>()
 
   const handleNewAccount = () => {
@@ -74,5 +74,3 @@ const SignIn: React.FC = () => {
     </ScrollView>
   )
 }
-
-export default SignIn
