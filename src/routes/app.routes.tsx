@@ -22,6 +22,7 @@ type AppRoutesType = {
 }
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutesType>
+
 const { tokens } = gluestackUIConfig
 
 const iconSize = tokens.space[6]

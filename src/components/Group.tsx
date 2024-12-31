@@ -6,9 +6,10 @@ type Props = ComponentProps<typeof Button> & {
   isActive: boolean
 }
 
-const Group: React.FC<Props> = ({ name, isActive, ...rest }) => {
+export const Group: React.FC<Props> = ({ name, isActive, ...rest }) => {
   return (
     <Button
+      marginRight={3}
       minWidth="$24"
       h="$10"
       bg="$gray600"
@@ -35,5 +36,3 @@ const Group: React.FC<Props> = ({ name, isActive, ...rest }) => {
     </Button>
   )
 }
-
-export default Group

@@ -4,7 +4,7 @@ import { Heading, HStack, Text, VStack, Icon } from "@gluestack-ui/themed"
 import UserPhoto from "./UserPhoto"
 import { LogOut } from "lucide-react-native"
 
-const HomeHeader: React.FC = () => {
+export const HomeHeader: React.FC = () => {
   return (
     <HStack bg="$gray600" pt="$16" pb="$5" px="$8" alignItems="center" gap="$2">
       <UserPhoto
@@ -25,5 +25,3 @@ const HomeHeader: React.FC = () => {
     </HStack>
   )
 }
-
-export default HomeHeader
