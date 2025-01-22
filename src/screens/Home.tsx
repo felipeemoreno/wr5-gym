@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
-import { FlatList, Heading, HStack, VStack, Text } from "@gluestack-ui/themed"
+import { Heading, HStack, VStack, Text } from "@gluestack-ui/themed"
 
 import { HomeHeader } from "@components/HomeHeader"
 import { Group } from "@components/Group"
 import { ExerciseCard } from "@components/ExerciseCard"
 import { AppNavigatorRoutesProps } from "@routes/app.routes"
+import { FlatList } from "react-native"
 
 export const Home: React.FC = () => {
   const [exercises, setExercises] = useState<string[]>([
@@ -35,7 +36,6 @@ export const Home: React.FC = () => {
         <HStack>
           <FlatList
             data={groups}
-            keyExtractor={(item, index) => String(index)}
             renderItem={({ item }) => (
               <Group
                 name={item}
@@ -45,6 +45,7 @@ export const Home: React.FC = () => {
                 onPress={() => setGroupSelected(item)}
               />
             )}
+            keyExtractor={(item, index) => String(index)}
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 32 }}
