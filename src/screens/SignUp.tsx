@@ -8,6 +8,7 @@ import {
   Text,
   Heading,
   ScrollView,
+  useToast,
 } from "@gluestack-ui/themed"
 
 import BackgroundImg from "@assets/background.png"
@@ -16,6 +17,10 @@ import { Input } from "@components/Input"
 import Button from "@components/Button"
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes"
 import { useNavigation } from "@react-navigation/native"
+import { api } from "@services/api"
+import { AppError } from "@utils/AppError"
+import { ToastMessage } from "@components/ToastMessage"
+import { isAxiosError } from "axios"
 
 type FormDataProps = {
   name: string
@@ -42,6 +47,8 @@ const signUpSchema = yup.object({
 })
 
 export const SignUp: React.FC = () => {
+  const toast = useToast()
+
   const {
     control,
     handleSubmit,
@@ -56,18 +63,34 @@ export const SignUp: React.FC = () => {
     navigation.goBack()
   }
 
-  const handleSignUp = ({
-    name,
-    email,
-    password,
-    confirmPassword,
-  }: FormDataProps) =>
-    console.log({
-      name,
-      email,
-      password,
-      confirmPassword,
-    })
+  const handleSignUp = async ({ name, email, password }: FormDataProps) => {
+    try {
+      const response = await api.post("/users", {
+        name,
+        email,
+        password,
+      })
+      console.log("data", response.data)
+    } catch (error) {
+      const isAppError = error instanceof AppError
+      const title = isAppError
+        ? error.message
+        : "Não foi possível criar a conta. Tente novamente mais tarde."
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="error"
+            title={title}
+            description=""
+            onClose={() => toast.close(id)}
+          />
+        ),
+      })
+    }
+  }
 
   return (
     <ScrollView
