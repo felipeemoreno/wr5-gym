@@ -1,4 +1,5 @@
-import { useForm, Controller } from "react-hook-form"
+import { useState } from "react"
+import { Controller, useForm } from "react-hook-form"
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import {
@@ -20,7 +21,7 @@ import { useNavigation } from "@react-navigation/native"
 import { api } from "@services/api"
 import { AppError } from "@utils/AppError"
 import { ToastMessage } from "@components/ToastMessage"
-import { isAxiosError } from "axios"
+import { useAuth } from "@hooks/useAuth"
 
 type FormDataProps = {
   name: string
@@ -47,6 +48,9 @@ const signUpSchema = yup.object({
 })
 
 export const SignUp: React.FC = () => {
+  const { signIn } = useAuth()
+  const [isLoading, setIsLoading] = useState(false)
+
   const toast = useToast()
 
   const {
@@ -65,13 +69,16 @@ export const SignUp: React.FC = () => {
 
   const handleSignUp = async ({ name, email, password }: FormDataProps) => {
     try {
-      const response = await api.post("/users", {
+      setIsLoading(true)
+      await api.post("/users", {
         name,
         email,
         password,
       })
-      console.log("data", response.data)
+      await signIn(email, password)
     } catch (error) {
+      setIsLoading(false)
+
       const isAppError = error instanceof AppError
       const title = isAppError
         ? error.message
@@ -179,6 +186,7 @@ export const SignUp: React.FC = () => {
             <Button
               title="Criar e acessar"
               onPress={handleSubmit(handleSignUp)}
+              isLoading={isLoading}
             />
           </Center>
 
